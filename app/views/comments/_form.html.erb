@@ -1,0 +1,19 @@
+<div class="ui reply form">
+    <%= form_for [ @article, @comment ] do |f| %>
+        <p>
+            <%= f.label :author_name, "Your Name" %>
+            <div class="ui input">
+                <%= f.text_field :author_name %>
+            </div>
+        </p>
+        <p>
+            <%= f.label :body, "Comment" %><br>
+            <div class="field">
+                <%= f.text_area :body %>
+            </div>
+        </p>
+        <p>
+            <%= f.submit 'Submit', :class => "ui button" %>
+        </p>
+    <% end %>
+</div>

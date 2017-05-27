@@ -1,0 +1,39 @@
+<style type="text/css">
+    .ui.footer.segment{
+        font-size: 1em;
+    }
+
+    .ui.comments{ font-size: 1.2em; }
+    .ui.reply.form{
+        font-size: 1em;
+    }
+
+    a{
+        color: inherit;
+    }
+</style>
+<div class="ui text container">
+    <div class="ui center aligned vertical segment">
+        <h1><%= @article.title %></h1>
+    </div>
+    <p>
+        Tags:
+        <% @article.tags.each do |tag| %>
+            <%= link_to tag.name, tag_path(tag), class: "ui tag label" %>
+        <% end %>
+    </p>
+    <div class="ui center aligned vertical segment body">
+        <p><%= @article.body %></p>
+    </div>
+    <h2 class="ui dividing header"><%= @article.comments.size %> Comments</h2>
+    <div class="ui comments">
+        <%= render partial: 'articles/comment', collection: @article.comments %>
+        <%= render partial: 'comments/form' %>
+    </div>
+    <div class="ui center aligned vertical footer segment">
+    <%= link_to "Back to Articles List", articles_path %> |
+        <%= link_to "Delete Article", article_path(@article),
+        method: :delete, data: {confirm: "Really delete the article?"} %> |
+        <%= link_to "Edit Article", edit_article_path(@article) %>
+    </div>
+</div>

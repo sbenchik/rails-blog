@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="/assets/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <style>
+
+        h1.ui.center.aligned.header{
+            font-size: 3.5em;
+        }
+
+        .intro{
+            position: relative;
+            padding-bottom: 3em;
+            padding-top: 3em;
+        }
+
+        .ui.vertical.segment{
+            font-size: 1.5em;
+        }
+
+        .ui.message>.fa-times{
+            position: absolute;
+            right: 1em;
+            top: 1.2em;
+            opacity: .7;
+        }
+
+        #footer{
+            font-size: 1em;
+        }
+
+    </style>
+    <script>
+        $(document).ready(function(){
+            $('.message .fa-times').on('click', function() {
+                $(this).closest('.message').fadeOut();
+            });
+        });
+    </script>
+    <title>Blogger</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="zoomed masthead segment">
+        <div class="ui container">
+            <div class="intro">
+                <h1 class="ui center aligned header">All Articles</h1>
+            </div>
+        </div>
+    </div>
+    <% unless flash.notice.nil? %>
+        <div class="ui container">
+            <div class="ui message closable">
+                <i class="fa fa-times"></i>
+                <%= flash.notice %>
+            </div>
+        </div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
